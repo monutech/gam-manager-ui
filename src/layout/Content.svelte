@@ -3,6 +3,7 @@
     import LineItem from '../components/LineItem.svelte';
     import Filter from '../components/Filter.svelte';
     import { filter, action, lineItem } from '../store/store';
+import { url } from 'inspector';
     const options = [
 		{ color: 'red' },
 		{ color: 'green' },
@@ -28,18 +29,31 @@
     function handleSubmit() {
 		console.log('filter', $filter);
 		console.log('action', $action);
-		console.log('lineItem', $lineItem);
-    }
-    
-    async function getResult() {
-        // let response = await fetch(`http://numbersapi.com/${query}`);
-        console.log('res');
-        // let text = await response.text();
-        // let data = text;
-        // return data;
+        console.log('lineItem', $lineItem);
+        const urlString = `${lineItem}/${action}/${filter}`;
+        doPost(urlString);
     }
 
-    getResult();
+    async function doPost(urlString) {
+		const res = await fetch('https://myapiandstuff' + urlString, {
+			method: 'POST',
+			body: JSON.stringify()
+		})
+		
+		const json = await res.json()
+		result = JSON.stringify(json)
+	}
+    
+    async function getDatData() {
+        // let response = await fetch(`https://`);
+        console.log('res', response);
+        const { actions, filters, listItems  } = response;
+        actions = actions;
+        listItems = listItems;
+        filters = filters;
+    }
+
+    getDatData();
 
 </script>
 
