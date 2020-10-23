@@ -1,13 +1,10 @@
 <script>
     import Select from '../common/Select.svelte';
     let title = 'Line Item';
-    const options = [
-		{ color: 'red' },
-		{ color: 'green' },
-		{ color: 'blue' },
-	];
+    export let lineItems = [];
+
 </script>
 
-{#if options.length > 1}
-    <Select title={title} options={options} />
+{#if lineItems.length > 1}
+    <Select type={'lineItem'} title={title} options={lineItems} />
 {/if}

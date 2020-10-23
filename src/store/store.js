@@ -1,22 +1,47 @@
 import { writable } from 'svelte/store';
 
-const CARS = [
-    { make: "Ford", model: "Taurus", year: "2015" },
-    { make: "Toyota", model: "Avalon", year: "2013" }
-];
+function createCount() {
+	const { subscribe, set, update } = writable(0);
 
-const { subscribe, set, update } = writable(CARS);
-
-const addCar = car => update(car => {
-    return [...cars, car];
-});
-
-const reset = () => {
-    set(CARS);
-};
-
-export default {
-    subscribe,
-    addCar,
-    reset
+	return {
+		subscribe,
+		increment: () => update(n => n + 1),
+		decrement: () => update(n => n - 1),
+		reset: () => set(0)
+	};
 }
+
+const count = createCount();
+
+function createFilter() {
+	const { subscribe, set } = writable("No one")
+	
+	return {
+		subscribe,
+		set: (value) => (set(value))
+	}
+}
+
+function createAction() {
+	const { subscribe, set } = writable("No one")
+	
+	return {
+		subscribe,
+		set: (value) => (set(value))
+	}
+}
+
+function createLineItem() {
+	const { subscribe, set } = writable("No one")
+	
+	return {
+		subscribe,
+		set: (value) => (set(value))
+	}
+}
+
+const filter = createFilter();
+const action = createAction();
+const lineItem = createLineItem();
+
+export {count, filter, action, lineItem}

@@ -1,12 +1,9 @@
 <script>
     import Select from '../common/Select.svelte';
     let title = 'Action';
-    const options = [
-		{ color: 'red' },
-		{ color: 'green' },
-		{ color: 'blue' },
-	];
+    export let actions = [];
+
 </script>
-{#if options.length > 1}
-    <Select title={title} options={options} />
+{#if actions.length > 1}
+    <Select type={'action'} title={title} options={actions} />
 {/if}
