@@ -1,5 +1,6 @@
 <script>
+	import Layout from './Layout.svelte'
 	let name = 'James';
 </script>
 
-<h1>Hello {name}!</h1>
+<Layout />
