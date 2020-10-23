@@ -3,7 +3,6 @@
     import LineItem from '../components/LineItem.svelte';
     import Filter from '../components/Filter.svelte';
     import { filter, action, lineItem } from '../store/store';
-import { url } from 'inspector';
     const options = [
 		{ color: 'red' },
 		{ color: 'green' },
@@ -30,14 +29,14 @@ import { url } from 'inspector';
 		console.log('filter', $filter);
 		console.log('action', $action);
         console.log('lineItem', $lineItem);
-        const urlString = `${lineItem}/${action}/${filter}`;
-        doPost(urlString);
+        const urlString = ``;
+        doThePostThing(urlString)
     }
 
-    async function doPost(urlString) {
-		const res = await fetch('https://myapiandstuff' + urlString, {
+    	async function doThePostThing(url) {
+		const res = await fetch('https://httpbin.org/post' + url, {
 			method: 'POST',
-			body: JSON.stringify()
+			body: JSON.stringify({})
 		})
 		
 		const json = await res.json()
@@ -46,11 +45,11 @@ import { url } from 'inspector';
     
     async function getDatData() {
         // let response = await fetch(`https://`);
-        console.log('res', response);
-        const { actions, filters, listItems  } = response;
-        actions = actions;
-        listItems = listItems;
-        filters = filters;
+        // console.log('res', response);
+        // const { actions, filters, listItems  } = response;
+        // actions = actions;
+        // listItems = listItems;
+        // filters = filters;
     }
 
     getDatData();
